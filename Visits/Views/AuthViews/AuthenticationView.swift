@@ -9,16 +9,19 @@ import SwiftUI
 
 struct AuthenticationView: View {
     var body: some View {
-        ZStack {
-            Color("LaunchBackgroundColor")
-                .ignoresSafeArea()
-            
-            VStack {
-                appName
+        NavigationView {
+            ZStack {
+                Color("LaunchBackgroundColor")
+                    .ignoresSafeArea()
                 
-                loginAndSignUpButtons
-                    .padding(.top, 100)
+                VStack {
+                    appName
+                    
+                    loginAndSignUpButtons
+                        .padding(.top, 100)
+                }
             }
+            .navigationBarHidden(true)
         }
     }
 }
@@ -32,6 +35,13 @@ struct AuthenticationView_Previews: PreviewProvider {
         }
     }
 }
+
+
+
+
+
+
+ 
 
 extension AuthenticationView {
     private var appName: some View {
