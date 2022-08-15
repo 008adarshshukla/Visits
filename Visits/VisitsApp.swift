@@ -26,7 +26,7 @@ struct VisitsApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                LoginView()//change the view here
+                AuthenticationView()//change the view here
                 if showlaunchScreen {
                     LaunchScreenView()
                         .onAppear {

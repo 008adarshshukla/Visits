@@ -23,6 +23,7 @@ struct AuthenticationView: View {
             }
             .navigationBarHidden(true)
         }
+        .accentColor(Color(Constants.secondaryTextColor))
     }
 }
 
@@ -48,8 +49,9 @@ extension AuthenticationView {
     
     private var loginAndSignUpButtons: some View {
         VStack {
-            Button {
-                
+            
+            NavigationLink {
+                LoginView()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(.blue)
@@ -76,7 +78,7 @@ extension AuthenticationView {
             .padding()
             .padding(.bottom)
             
-            Button {
+            NavigationLink {
                 
             } label: {
                 RoundedRectangle(cornerRadius: 8)

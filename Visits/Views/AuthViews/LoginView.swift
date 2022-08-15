@@ -42,7 +42,9 @@ struct LoginView: View {
             .padding(.horizontal, 6)
             
             VStack {
+                //backButton
                 Spacer()
+                customDivider
                 signUpSegue
             }
         }
@@ -115,5 +117,27 @@ extension LoginView {
                         .fontWeight(.semibold)
                 }
         }
+    }
+    
+    private var customDivider: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .foregroundColor(Color(Constants.secondaryTextColor))
+            .frame(height: 2)
+            .padding()
+    }
+    
+    private var backButton: some View {
+        Button {
+            
+        } label: {
+            HStack {
+                Image(systemName: "chevron.left")
+                    .font(.title)
+                    .foregroundColor(Color(Constants.secondaryTextColor))
+                    .padding()
+                Spacer()
+            }
+        }
+        
     }
 }
