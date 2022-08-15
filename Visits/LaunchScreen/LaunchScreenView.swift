@@ -15,7 +15,7 @@ struct LaunchScreenView: View {
     
     var body: some View {
         ZStack {
-            Color("LaunchBackgroundColor")
+            Color(Constants.launchBackground)
                 .ignoresSafeArea()
             
             VStack {

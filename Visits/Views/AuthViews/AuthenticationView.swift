@@ -28,11 +28,7 @@ struct AuthenticationView: View {
 
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            AuthenticationView()
-            AuthenticationView()
-                .preferredColorScheme(.dark)
-        }
+        AuthenticationView()
     }
 }
 
