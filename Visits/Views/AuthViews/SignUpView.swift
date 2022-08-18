@@ -14,6 +14,14 @@ struct SignUpView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @StateObject private var authViewModel = AuthViewModel()
+    let userType: [String] = ["Advertiser", "User"]
+    @State private var selectedType: String = "Advertiser"
+    
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .yellow
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black,.font: UIFont.boldSystemFont(ofSize: 24),], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 24),], for: .normal)
+    }
     
     var body: some View {
         if authViewModel.signedIn {
@@ -53,6 +61,10 @@ extension SignUpView {
                     
                     passwordField
                         .padding(.horizontal)
+                    
+                    userTypePickerView
+                        .padding()
+                    
                     
                     termsAndConditionText
                         .padding(.horizontal)
@@ -178,6 +190,19 @@ extension SignUpView {
                         .font(.title3)
                         .fontWeight(.semibold)
                 }
+        }
+    }
+    
+    private var userTypePickerView: some View {
+        VStack {
+            Picker("Choose the User Type", selection: $selectedType) {
+                ForEach(userType, id: \.self) { type in
+                    Text(type)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .frame(height: 45)
+            
         }
     }
 }

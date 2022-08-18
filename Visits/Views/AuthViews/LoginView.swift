@@ -23,6 +23,7 @@ struct LoginView: View {
             LocationsView()
         } else {
             loginView
+    
         }
     }
 }
