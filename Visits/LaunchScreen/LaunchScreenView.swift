@@ -32,6 +32,9 @@ struct LaunchScreenView: View {
                 count = count == 4 ? 0 : count + 1
             }
         }
+        .onAppear {
+            //viewModel.signedIn = viewModel.isSignedIn
+        }
     }
 }
 

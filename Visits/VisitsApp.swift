@@ -22,16 +22,22 @@ struct VisitsApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var showlaunchScreen: Bool = true
+    @StateObject private var authViewModel = AuthViewModel()
     
     var body: some Scene {
         WindowGroup {
             ZStack {
-                AuthenticationView()//change the view here
+                if authViewModel.isSignedIn {
+                    LocationsView()
+                } else {
+                    AuthenticationView()
+                }
+                
                 if showlaunchScreen {
                     LaunchScreenView()
                         .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                showlaunchScreen = false;
+                                showlaunchScreen = false
                             }
                         }
                 }
@@ -41,14 +47,9 @@ struct VisitsApp: App {
 }
 
 
+//App flow
 /*
- App Planning -
- 
- 1.Loading Screen
- 2.Tab View
-    Map View of the Locations Visited
-        Tapping on the location presents the a sheet showing the deatails of the location.
-        
-    List View of the locations Visited
-        Tapping on the location presents the a sheet showing the deatails of the location.
+ 1. shows the launch screen for every launch
+ 2. authntication view appaers if the user is not authenticated.
+ 3. map view appears directly if the user is authenticated.
  */

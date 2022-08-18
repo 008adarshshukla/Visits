@@ -15,4 +15,6 @@ struct Constants {
     static let greenColor = "GreenColor"
     static let redColor = "RedColor"
     static let secondaryTextColor = "SecondaryTextColor"
+    static let travllerImage = "Traveller"
+    static let AdvertiserImage = "AdvertiserImage"
 }

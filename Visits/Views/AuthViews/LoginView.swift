@@ -16,8 +16,25 @@ struct LoginView: View {
     @State private var emailText: String = ""
     @State private var passwordText: String = ""
     @FocusState private var focusedField: FocusedField?
+    @StateObject private var authViewModel = AuthViewModel()
     
     var body: some View {
+        if authViewModel.signedIn {
+            LocationsView()
+        } else {
+            loginView
+        }
+    }
+}
+
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+    }
+}
+
+extension LoginView {
+    private var loginView: some View {
         ZStack {
             Color(Constants.launchBackground)
                 .ignoresSafeArea()
@@ -51,11 +68,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
 
 extension LoginView {
     
@@ -72,7 +84,7 @@ extension LoginView {
             Text("Dont't have an account?")
                 .foregroundColor(Color(Constants.secondaryTextColor))
             NavigationLink {
-                
+                SignUpView()
             } label: {
                 Text("Sign up.")
                     .foregroundColor(.white)
@@ -85,7 +97,8 @@ extension LoginView {
     
     private var textField: some View {
         TextField("Email Address...", text: $emailText)
-            .frame(height: 55)
+            .textInputAutocapitalization(.never)
+            .frame(height: 50)
             .scenePadding(.horizontal)
             .background(Color(Constants.backgroundColor))
             .cornerRadius(8)
@@ -94,7 +107,8 @@ extension LoginView {
     
     private var passwordField: some View {
         SecureField("Password", text: $passwordText)
-            .frame(height: 55)
+            .textInputAutocapitalization(.never)
+            .frame(height: 50)
             .scenePadding(.horizontal)
             .background(Color(Constants.backgroundColor))
             .cornerRadius(8)
@@ -103,11 +117,14 @@ extension LoginView {
     
     private var loginButton: some View {
         Button {
-            
+            guard !emailText.isEmpty, !passwordText.isEmpty else {
+                return
+            }
+            authViewModel.signIn(email: emailText, password: passwordText)
         } label: {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.blue)
-                .frame(height: 55)
+                .frame(height: 50)
                 .frame(maxWidth: .infinity)
             
                 .overlay(alignment: .center) {
@@ -121,23 +138,8 @@ extension LoginView {
     
     private var customDivider: some View {
         RoundedRectangle(cornerRadius: 8)
-            .foregroundColor(Color(Constants.secondaryTextColor))
-            .frame(height: 2)
+            .foregroundColor(Color(Constants.secondaryTextColor).opacity(0.6))
+            .frame(height: 1)
             .padding()
-    }
-    
-    private var backButton: some View {
-        Button {
-            
-        } label: {
-            HStack {
-                Image(systemName: "chevron.left")
-                    .font(.title)
-                    .foregroundColor(Color(Constants.secondaryTextColor))
-                    .padding()
-                Spacer()
-            }
-        }
-        
     }
 }

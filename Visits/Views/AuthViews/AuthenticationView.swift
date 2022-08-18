@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    @StateObject private var authViewModel = AuthViewModel()
     var body: some View {
         NavigationView {
             ZStack {
@@ -68,18 +69,18 @@ extension AuthenticationView {
             HStack {
                 RoundedRectangle(cornerRadius: 2)
                     .frame(height: 2)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.gray.opacity(0.6))
                 Text("OR")
                     .foregroundColor(Color("SecondaryTextColor"))
                 RoundedRectangle(cornerRadius: 2)
                     .frame(height: 2)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.gray.opacity(0.6))
             }
             .padding()
             .padding(.bottom)
             
             NavigationLink {
-                
+                SignUpView()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(.blue)
