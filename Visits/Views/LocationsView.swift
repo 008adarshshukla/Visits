@@ -34,6 +34,7 @@ struct LocationsView: View {
                 
                 Text("\(viewModel.currentLocation.longitude)")
                     .padding()
+                Text(UserDefaultsManager.shared.getDataFromUserDeafults(forKey: Constants.userType))
             }
         }
     }

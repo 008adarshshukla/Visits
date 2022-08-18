@@ -17,4 +17,6 @@ struct Constants {
     static let secondaryTextColor = "SecondaryTextColor"
     static let travllerImage = "Traveller"
     static let AdvertiserImage = "AdvertiserImage"
+    static let suiteName = "com.visits.saved.data"
+    static let userType = "userType"
 }

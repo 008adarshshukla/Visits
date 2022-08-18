@@ -14,13 +14,13 @@ struct SignUpView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @StateObject private var authViewModel = AuthViewModel()
-    let userType: [String] = ["Advertiser", "User"]
-    @State private var selectedType: String = "Advertiser"
+    let userType: [String] = ["User", "Advertiser"]
+    @State private var selectedUserType: String = "User"
     
     init() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = .yellow
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black,.font: UIFont.boldSystemFont(ofSize: 24),], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 24),], for: .normal)
+        UISegmentedControl.appearance().selectedSegmentTintColor = .systemPink
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black,.font: UIFont.boldSystemFont(ofSize: 30),], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 30),], for: .normal)
     }
     
     var body: some View {
@@ -88,7 +88,7 @@ extension SignUpView {
             Text("Sign up")
                 .foregroundColor(Color(Constants.launchAccentColor))
                 .font(.title)
-                .fontWeight(.semibold)
+                .fontWeight(.bold)
             Spacer()
         }
     }
@@ -117,7 +117,7 @@ extension SignUpView {
                 .font(.body)
                 .fontWeight(.semibold)
             
-            TextField("Your Lasta Name", text: $lastName)
+            TextField("Your Last Name", text: $lastName)
                 .padding()
                 .frame(height: 45)
                 .frame(maxWidth: .infinity)
@@ -178,6 +178,7 @@ extension SignUpView {
                 return
             }
             authViewModel.signUp(email: email, password: password)
+            UserDefaultsManager.shared.saveToUserDefaults(withKey: Constants.userType, value: selectedUserType)
         } label: {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.blue)
@@ -195,7 +196,7 @@ extension SignUpView {
     
     private var userTypePickerView: some View {
         VStack {
-            Picker("Choose the User Type", selection: $selectedType) {
+            Picker("Choose the User Type", selection: $selectedUserType) {
                 ForEach(userType, id: \.self) { type in
                     Text(type)
                 }
