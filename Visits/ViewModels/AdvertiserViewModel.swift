@@ -7,3 +7,7 @@
 
 import Foundation
 
+class AdvertiserViewModel: ObservableObject {
+    @Published var businesses: [BusinessModel] = []
+    
+}

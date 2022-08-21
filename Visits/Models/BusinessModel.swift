@@ -18,4 +18,5 @@ struct BusinessModel {
     var visitWeakly: Int
     var pastVisitMonthly: Int
     var pastVisitWeekly: Int
+    var visitsPerMonthForLastSixMonths: [Int]
 }

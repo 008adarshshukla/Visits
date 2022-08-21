@@ -8,25 +8,32 @@
 import SwiftUI
 
 struct AdvertiserHomeView: View {
+    
     @State private var showProfileButtonAnimation: Bool = false
     @State private var showNewButtonAnimation: Bool = false
+    @StateObject private var advertiserViewModel = AdvertiserViewModel()
+    
     var body: some View {
         ZStack {
             Color(Constants.backgroundColor)
                 .ignoresSafeArea()
             
-            VStack {
-                headerView
-                    .padding(.horizontal,4)
-                
-               Spacer()
+            NavigationView {
+                ScrollView {
+                    
+                }
+                .navigationTitle("Portfolio")
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        profileButton
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        newButton
+                    }
+                }
             }
             
-            VStack {
-                Text("Oops!!! No Businesses added yet.")
-                Text("Please add Businesses!!!")
-            }
-            .font(.subheadline)
         }
     }
 }
@@ -38,8 +45,10 @@ struct AdvertiserHomeView_Previews: PreviewProvider {
 }
 
 extension AdvertiserHomeView {
-    private var headerView: some View {
-        HStack {
+    private var profileButton: some View {
+        Button {
+            
+        } label: {
             Circle()
                 .foregroundColor(.white)
                 .frame(width: 50, height: 50)
@@ -47,27 +56,16 @@ extension AdvertiserHomeView {
                 .overlay(alignment: .center) {
                     Image(systemName: "person.fill")
                         .font(.headline)
+                        .foregroundColor(.black)
                 }
-                .padding()
-                .background(
-                    Circle()
-                        .stroke(lineWidth: 4)
-                        .foregroundColor(.black.opacity(0.5))
-                        .scaleEffect(showProfileButtonAnimation ? 1 : 0)
-                        .opacity(showProfileButtonAnimation ? 0 : 1)
-                )
-                .onTapGesture {
-                    //add the code for tap gesture
-                    withAnimation(Animation.easeInOut(duration: 0.8)) {
-                        showProfileButtonAnimation.toggle()
-                    }
-                }
-            Spacer()
-            Text("Portfolio")
-                .font(.title)
-                .fontWeight(.heavy)
-            Spacer()
+        }
+
+    }
+    
+    private var newButton: some View {
+        Button {
             
+        } label: {
             Circle()
                 .foregroundColor(.white)
                 .frame(width: 50, height: 50)
@@ -75,21 +73,10 @@ extension AdvertiserHomeView {
                 .overlay(alignment: .center) {
                     Image(systemName: "plus")
                         .font(.headline)
-                }
-                .padding()
-                .background(
-                    Circle()
-                        .stroke(lineWidth: 4)
-                        .foregroundColor(.black.opacity(0.5))
-                        .scaleEffect(showNewButtonAnimation ? 1 : 0)
-                        .opacity(showNewButtonAnimation ? 0 : 1)
-                )
-                .onTapGesture {
-                    //add the code for tap gesture
-                    withAnimation(Animation.easeInOut(duration: 0.8)) {
-                        showNewButtonAnimation.toggle()
-                    }
+                        .foregroundColor(.black)
                 }
         }
+        
     }
+    
 }
