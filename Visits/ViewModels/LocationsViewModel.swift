@@ -5,52 +5,56 @@
 //  Created by Adarsh Shukla on 10/08/22.
 //
 
-import SwiftUI
-import CoreLocation
 import MapKit
 
 enum MapDetails {
-    static let startingLocation = CLLocationCoordinate2D(latitude: 40, longitude: 120)
-    static let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
+    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
 }
 
 final class LocationsViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var mapRegion = MKCoordinateRegion(
-        center: MapDetails.startingLocation,
-        span: MapDetails.span)
     
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocationCoordinate2D = MapDetails.startingLocation
+    var locationManager: CLLocationManager?
     
-    override init() {
-        super.init()
-        locationManager.delegate = self
-    }
+    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     
-    func requestToAllowLocationOnce() {
-        locationManager.requestLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let latestLocation = locations.first else {
-            return
+    func checkIfLocationServicesIsEnable() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager = CLLocationManager()
+            locationManager!.delegate = self
+        } else {
+            print("Show an alert letting them know that they have to turn locations on")
         }
+    }
+    
+    //Function that check the user location permission, its private because only functions inside this class can have access to this function
+    private func checkLocationAuthorization() {
+        guard let locationManager = locationManager else { return }
         
-        DispatchQueue .main.async {
-            self.mapRegion = MKCoordinateRegion(center: latestLocation.coordinate, span: MapDetails.span)
-            self.currentLocation = latestLocation.coordinate
+        
+        
+        //Switch case to determine the authorization of the user about the location of it
+        switch locationManager.authorizationStatus {
+        
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            print("Your current location in restricted")
+        case .denied:
+            print("You have denied this app location permission. Go to the settings to change it.")
+        case .authorizedAlways, .authorizedWhenInUse:
+            region = MKCoordinateRegion(
+                center: locationManager.location!.coordinate,
+                span: MapDetails.defaultSpan)
+            
+        @unknown default:
+            break
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
-    }
-}
 
-extension LocationsViewModel {
-    //getting nearby places using MapKit.
-    func getNearByLandmarks() {
-        
+    }
+    
+    //Function created to verify if the user location permission did change
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
     }
 }
- 

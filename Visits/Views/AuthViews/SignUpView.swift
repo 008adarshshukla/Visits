@@ -164,7 +164,7 @@ extension SignUpView {
     }
     
     private var termsAndConditionText: some View {
-        Text("By signing up you agree to our **Terms & Condition** and **Privacy Policy***.")
+        Text("By signing up I agree to the **Terms & Condition** and **Privacy Policy***.")
             .foregroundColor(.accentColor)
             .onTapGesture {
                 
@@ -186,7 +186,7 @@ extension SignUpView {
                 .frame(maxWidth: .infinity)
             
                 .overlay(alignment: .center) {
-                    Text("Sign up")
+                    Text("Agree & Sign up")
                         .foregroundColor(.white)
                         .font(.title3)
                         .fontWeight(.semibold)

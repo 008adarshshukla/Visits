@@ -19,6 +19,7 @@
 		029697A728B15EAA00EEB2FE /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029697A628B15EAA00EEB2FE /* BusinessModel.swift */; };
 		02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0DB5328A3893200405DE4 /* LocationsView.swift */; };
 		02A0DB5628A38A6600405DE4 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0DB5528A38A6600405DE4 /* LocationsViewModel.swift */; };
+		02AF6D0F28F530D5002F4DE3 /* AdvertiserFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AF6D0E28F530D5002F4DE3 /* AdvertiserFormView.swift */; };
 		02B80FB728AB90AE00049044 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B80FB628AB90AE00049044 /* AuthViewModel.swift */; };
 		02C7424E28B1E10B00DA354E /* AdvertiserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C7424D28B1E10B00DA354E /* AdvertiserViewModel.swift */; };
 		02D3F36F289639C30007F0D1 /* VisitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3F36E289639C30007F0D1 /* VisitsApp.swift */; };
@@ -44,6 +45,7 @@
 		029697A628B15EAA00EEB2FE /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
 		02A0DB5328A3893200405DE4 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
 		02A0DB5528A38A6600405DE4 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		02AF6D0E28F530D5002F4DE3 /* AdvertiserFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiserFormView.swift; sourceTree = "<group>"; };
 		02B80FB628AB90AE00049044 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		02C7424D28B1E10B00DA354E /* AdvertiserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiserViewModel.swift; sourceTree = "<group>"; };
 		02D3F36B289639C30007F0D1 /* Visits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Visits.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +100,7 @@
 				02F5231028AA0DFA00E895D3 /* AuthViews */,
 				02A0DB5328A3893200405DE4 /* LocationsView.swift */,
 				0208FCC928AFEFEE0071A8EA /* ServicesView.swift */,
-				0208FCCD28B095A20071A8EA /* AdvertiserHomeView.swift */,
+				02AF6D0D28F53095002F4DE3 /* AdvertiserViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -119,6 +121,15 @@
 				029697A628B15EAA00EEB2FE /* BusinessModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		02AF6D0D28F53095002F4DE3 /* AdvertiserViews */ = {
+			isa = PBXGroup;
+			children = (
+				0208FCCD28B095A20071A8EA /* AdvertiserHomeView.swift */,
+				02AF6D0E28F530D5002F4DE3 /* AdvertiserFormView.swift */,
+			);
+			path = AdvertiserViews;
 			sourceTree = "<group>";
 		};
 		02D3F362289639C30007F0D1 = {
@@ -273,6 +284,7 @@
 				020D1EC128A9671700459F3F /* AuthenticationView.swift in Sources */,
 				02A0DB5628A38A6600405DE4 /* LocationsViewModel.swift in Sources */,
 				02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */,
+				02AF6D0F28F530D5002F4DE3 /* AdvertiserFormView.swift in Sources */,
 				0208FCCA28AFEFEE0071A8EA /* ServicesView.swift in Sources */,
 				027F30DB289A405D00172B7C /* LaunchScreenView.swift in Sources */,
 				02918C6228AA590D0045B041 /* SignUpView.swift in Sources */,
