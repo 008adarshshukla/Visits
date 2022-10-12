@@ -26,9 +26,13 @@ struct VisitsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
+            /*ZStack {
                 if authViewModel.isSignedIn {
-                    LocationsView()
+                    if UserDefaultsManager.shared.getDataFromUserDeafults(forKey: Constants.userType) == "User" {
+                        LocationsView()
+                    } else {
+                        AdvertiserFormView()
+                    }
                 } else {
                     AuthenticationView()
                 }
@@ -41,7 +45,8 @@ struct VisitsApp: App {
                             }
                         }
                 }
-            }
+            }*/
+            AdvertiserFormView()
         }
     }
 }

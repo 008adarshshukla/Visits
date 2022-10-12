@@ -20,3 +20,9 @@ struct BusinessModel {
     var pastVisitWeekly: Int
     var visitsPerMonthForLastSixMonths: [Int]
 }
+
+struct LocationModel: Identifiable, Codable, Equatable {
+    var id = UUID().uuidString
+    var latitude: Double
+    var longitude: Double
+}
