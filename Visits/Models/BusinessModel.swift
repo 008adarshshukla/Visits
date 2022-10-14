@@ -8,17 +8,14 @@
 import Foundation
 import UIKit
 
-struct BusinessModel {
+struct BusinessModel: Identifiable, Equatable {
+    var id = UUID().uuidString
     var businessType: String
     var businessName: String
+    var businessAddress: String
     var latitude: Double
-    var laongitude: Double
+    var longitude: Double
     var images: [UIImage]
-    var visitMonthly: Int
-    var visitWeakly: Int
-    var pastVisitMonthly: Int
-    var pastVisitWeekly: Int
-    var visitsPerMonthForLastSixMonths: [Int]
 }
 
 struct LocationModel: Identifiable, Codable, Equatable {

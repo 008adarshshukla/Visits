@@ -7,7 +7,9 @@
 
 import SwiftUI
 import MapKit
+import PhotosUI
 
+@available(iOS 16.0, *)
 struct AdvertiserFormView: View {
     
     let services: [String] = ["Hospital", "Hotel", "Police Station", "Restaurant", "Multiplex", "Education Center", "Mall", "Pharmacy"]
@@ -18,6 +20,8 @@ struct AdvertiserFormView: View {
     @State var latitude: Double = 0.0
     @State var longitude: Double = 0.0
     @State private var locations = [LocationModel]()
+    @State var selectedItemsFromGallery: [PhotosPickerItem] = []
+    @State var selectedImages: [UIImage] = []
     
     var body: some View {
         ZStack {
@@ -32,19 +36,44 @@ struct AdvertiserFormView: View {
                     .padding(.leading)
                 ScrollView {
                     VStack {
-                        Image(systemName: "photo.circle.fill")
-                            .resizable()
-                            .foregroundColor(.gray.opacity(0.8))
-                            .frame(width: 200, height: 200)
-                            .overlay(alignment: .bottomTrailing) {
-                                Circle()
-                                    .foregroundColor(.mint)
-                                    .frame(width: 50, height: 50)
-                                    .overlay(alignment: .center) {
-                                        Image(systemName: "plus")
-                                            .font(.title)
-                                    }
+                        if selectedImages.count > 0 {
+                            TabView {
+                                ForEach(selectedImages, id: \.self) { image in
+                                    Image(uiImage: image)
+                                        .resizable()
+                                }
                             }
+                            .frame(width: UIScreen.main.bounds.width -
+                                   30, height: 350)
+                            .cornerRadius(10)
+                            .tabViewStyle(.page)
+                        } else {
+                            Image(systemName: "photo.circle.fill")
+                                .resizable()
+                                .foregroundColor(.gray.opacity(0.8))
+                                .frame(width: 200, height: 200)
+                                .overlay(alignment: .bottomTrailing) {
+                                    PhotosPicker(selection: $selectedItemsFromGallery, matching: .any(of: [.images, .not(.livePhotos)])) {
+                                        Circle()
+                                            .foregroundColor(.mint)
+                                            .frame(width: 50, height: 50)
+                                            .overlay(alignment: .center) {
+                                                Image(systemName: "plus")
+                                                    .font(.title)
+                                            }
+                                    }
+                                    .onChange(of: selectedItemsFromGallery) { newValues in
+                                        selectedImages = []
+                                        for value in newValues {
+                                            Task{
+                                                if let imageData = try? await value.loadTransferable(type: Data.self), let image = UIImage(data: imageData) {
+                                                    selectedImages.append(image)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                        }
                         selectBusinessType()
                         getBusinessName()
                         getBusinessAddress()
@@ -58,6 +87,10 @@ struct AdvertiserFormView: View {
                             .frame(width: UIScreen.main.bounds.width -
                                    30, height: 400)
                             .padding()
+                        
+                        
+                        submitButton()
+                        
                     }
                 }
             }
@@ -65,12 +98,14 @@ struct AdvertiserFormView: View {
     }
 }
 
+@available(iOS 16.0, *)
 struct AdvertiserFormView_Previews: PreviewProvider {
     static var previews: some View {
         AdvertiserFormView()
     }
 }
 
+@available(iOS 16.0, *)
 extension AdvertiserFormView {
     
     //MARK: Selecting a Business Type.
@@ -135,7 +170,9 @@ extension AdvertiserFormView {
             Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
                     LocationMapAnnotationView()
-                }            }
+                }
+            }
+            
             
             LocationMapAnnotationView()
             
@@ -145,13 +182,15 @@ extension AdvertiserFormView {
                     Spacer()
                     Button {
                         //adding a new location
+                        latitude = mapRegion.center.latitude
+                        longitude = mapRegion.center.longitude
                         let newLocation = LocationModel(latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
                         locations.append(newLocation)
                     } label: {
                         Image(systemName: "plus")
                     }
                     .padding()
-                    .background(.black.opacity(0.75))
+                    .background(.red.opacity(0.6))
                     .foregroundColor(.white)
                     .font(.title2)
                     .clipShape(Circle())
@@ -159,6 +198,30 @@ extension AdvertiserFormView {
                 }
             }
             
+        }
+    }
+    
+    //MARK: Submit Button
+    @ViewBuilder
+    func submitButton() -> some View {
+        Button {
+            let newBusiness = BusinessModel(businessType: businessType, businessName: businessName, businessAddress: businessAddress, latitude: latitude, longitude: longitude, images: selectedImages)
+            print(newBusiness)
+            for image in selectedImages {
+                FirebaseStorageManager.shared.uploadImage(with: "\(newBusiness.businessName)\(newBusiness.businessAddress)", image: image)
+            }
+        } label: {
+            Text("Submit")
+                .foregroundColor(.white)
+                .font(.title2)
+                .fontWeight(.semibold)
+                .frame(height: 40)
+                .frame(maxWidth: .infinity)
+                .background {
+                    Capsule()
+                        .foregroundColor(.red.opacity(09))
+                }
+                .padding()
         }
     }
 }

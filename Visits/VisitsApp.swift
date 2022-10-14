@@ -17,6 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   }
 }
 
+@available(iOS 16.0, *)
 @main
 struct VisitsApp: App {
     
