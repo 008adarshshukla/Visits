@@ -15,8 +15,13 @@ class FirebaseStorageManager {
     //An instance of StorageReference referencing the root of the storage bucket.
     let storageReference = Storage.storage().reference()
     
+    var previousInstance = ""
+    var imageFilePaths: [String] = []
+}
+
+extension FirebaseStorageManager {
     //MARK: function to upload an image.
-    func uploadImage(with path: String, image: UIImage?) {
+    func uploadImage(with path: String, image: UIImage?) async throws {
         //checking if the image is not nil
         guard let image = image else {
             print("The image to be uploaded does not exist.")
@@ -32,13 +37,23 @@ class FirebaseStorageManager {
         }
         
         //specifying file name.
-        let fileReference = storageReference.child("\(path)/\(image).jpg")
+        let imageFilePath = "\(path)/\(image).jpg"
+        if path == previousInstance {
+            imageFilePaths.append(imageFilePath)
+        } else {
+            imageFilePaths.removeAll()
+            imageFilePaths.append(imageFilePath)
+            previousInstance = path
+        }
+        let fileReference = storageReference.child(imageFilePath)
         
-        let _ = fileReference.putData(imageData, metadata: nil) { (metadata, error) in
-            guard let _ = metadata else {
-                print("Uh-oh, an error occurred while uploading")
-                return
-            }
+        //uploading to storage.
+        do {
+            let _ = try await fileReference.putDataAsync(imageData, metadata: nil)
+            try await DatabaseManager.shared.addImagePath(toDocument: path, imagePaths: self.imageFilePaths)
+        } catch  {
+            throw error
         }
     }
+
 }

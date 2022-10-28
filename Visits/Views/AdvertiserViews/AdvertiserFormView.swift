@@ -206,9 +206,15 @@ extension AdvertiserFormView {
     func submitButton() -> some View {
         Button {
             let newBusiness = BusinessModel(businessType: businessType, businessName: businessName, businessAddress: businessAddress, latitude: latitude, longitude: longitude, images: selectedImages)
-            print(newBusiness)
-            for image in selectedImages {
-                FirebaseStorageManager.shared.uploadImage(with: "\(newBusiness.businessName)\(newBusiness.businessAddress)", image: image)
+            //performing task of uploading each images to the sorage and its corresponding address to the firestore.
+            Task {
+                for image in selectedImages {
+                    do {
+                        try await FirebaseStorageManager.shared.uploadImage(with: "\(newBusiness.businessName)\(newBusiness.businessAddress)", image: image)
+                    } catch  {
+                        print("Uh-oh, an error occurred while uploading")
+                    }
+                }
             }
         } label: {
             Text("Submit")
