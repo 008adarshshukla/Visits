@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0208FCCA28AFEFEE0071A8EA /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208FCC928AFEFEE0071A8EA /* ServicesView.swift */; };
 		020D1EC128A9671700459F3F /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020D1EC028A9671700459F3F /* AuthenticationView.swift */; };
 		020D1EC528A96E1B00459F3F /* Satisfy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 020D1EC428A96E1B00459F3F /* Satisfy-Regular.ttf */; };
 		0224469128F67BD6001F2D74 /* LocationMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0224469028F67BD6001F2D74 /* LocationMapAnnotationView.swift */; };
@@ -35,7 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0208FCC928AFEFEE0071A8EA /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		020D1EC028A9671700459F3F /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		020D1EC228A96D4700459F3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		020D1EC428A96E1B00459F3F /* Satisfy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Satisfy-Regular.ttf"; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				02A0DB5328A3893200405DE4 /* LocationsView.swift */,
-				0208FCC928AFEFEE0071A8EA /* ServicesView.swift */,
 				0224469028F67BD6001F2D74 /* LocationMapAnnotationView.swift */,
 				02F5231028AA0DFA00E895D3 /* AuthViews */,
 			);
@@ -295,7 +292,6 @@
 				02A0DB5628A38A6600405DE4 /* LocationsViewModel.swift in Sources */,
 				02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */,
 				02AF6D0F28F530D5002F4DE3 /* AdvertiserFormView.swift in Sources */,
-				0208FCCA28AFEFEE0071A8EA /* ServicesView.swift in Sources */,
 				027F30DB289A405D00172B7C /* LaunchScreenView.swift in Sources */,
 				02918C6228AA590D0045B041 /* SignUpView.swift in Sources */,
 				02F5231528AA101800E895D3 /* Constants.swift in Sources */,
