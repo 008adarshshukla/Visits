@@ -109,7 +109,6 @@
 				0208FCC928AFEFEE0071A8EA /* ServicesView.swift */,
 				0224469028F67BD6001F2D74 /* LocationMapAnnotationView.swift */,
 				02F5231028AA0DFA00E895D3 /* AuthViews */,
-				02AF6D0D28F53095002F4DE3 /* AdvertiserViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +188,7 @@
 				020D1EC028A9671700459F3F /* AuthenticationView.swift */,
 				02F5231128AA0E2900E895D3 /* LoginView.swift */,
 				02918C6128AA590D0045B041 /* SignUpView.swift */,
+				02AF6D0D28F53095002F4DE3 /* AdvertiserViews */,
 			);
 			path = AuthViews;
 			sourceTree = "<group>";
@@ -431,6 +431,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Visits/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow \"Visits\" to access your location? ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow \"Visits\" to access your location? ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -462,6 +463,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Visits/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow \"Visits\" to access your location? ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow \"Visits\" to access your location? ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

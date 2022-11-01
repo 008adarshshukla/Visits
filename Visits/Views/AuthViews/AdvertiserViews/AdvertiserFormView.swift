@@ -12,7 +12,20 @@ import PhotosUI
 @available(iOS 16.0, *)
 struct AdvertiserFormView: View {
     
-    let services: [String] = ["Hospital", "Hotel", "Police Station", "Restaurant", "Multiplex", "Education Center", "Mall", "Pharmacy"]
+    let services: [String] = ["bakery",
+                              "cafe",
+                              "carRental",
+                              "fitnessCenter",
+                              "hospital",
+                              "hotel",
+                              "laundry",
+                              "movieTheater",
+                              "pharmacy",
+                              "restaurant",
+                              "school",
+                              "store",
+                              "university"]
+    
     @State var businessType: String = ""
     @State var businessName: String = ""
     @State var businessAddress: String = ""
@@ -231,3 +244,4 @@ extension AdvertiserFormView {
         }
     }
 }
+

@@ -256,9 +256,18 @@ extension ServicesView {
 }
 
 /*
- Automata Theory-
- 
- Rice Theorem-
- Every non tryvial property of the RE language is undecidable.
- Time 
+ Businesses available as a part of mapkit
+ bakery
+ cafe
+ carRental
+ fitnessCenter
+ hospital
+ hotel
+ laundry
+ movieTheater
+ pharmacy
+ restaurant
+ school
+ store
+ university
  */

@@ -11,22 +11,61 @@ import SwiftUI
 struct LocationsView: View {
     
     @StateObject private var viewModel = LocationsViewModel()
+    @State var searchedLocation: String = ""
     
     
     var body: some View {
-        Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
-            .ignoresSafeArea()
-            .onAppear {
-                viewModel.checkIfLocationServicesIsEnable()
-            }
-        
+        ZStack {
+            Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
+                .ignoresSafeArea()
+            
+            searchBar()
+        }
         
     }
 }
 
 struct LocationsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LocationsView()
+    }
+}
+
+extension LocationsView {
+    @ViewBuilder
+    func searchBar() -> some View {
+        VStack {
+            HStack {
+                Button {
+                    //present side bar.
+                } label: {
+                    Image(systemName: "line.3.horizontal")
+                        .font(.title2)
+                        .foregroundColor(.black)
+                }
+                
+                TextField("Cafe, Restraunt, School...", text: $searchedLocation)
+                
+                Button {
+                    //search.
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 22, height: 22)
+                }
+                
+            }
+            .padding()
+            .background {
+                Capsule()
+                    .foregroundColor(.white)
+            }
+            .padding()
+            
+            Spacer()
+        }
     }
 }
 
