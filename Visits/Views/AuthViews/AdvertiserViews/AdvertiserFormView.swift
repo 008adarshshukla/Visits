@@ -182,12 +182,12 @@ extension AdvertiserFormView {
         ZStack {
             Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
-                    LocationMapAnnotationView()
+                    LocationMapAnnotationView(imageName: "map.circle.fill")
                 }
             }
             
             
-            LocationMapAnnotationView()
+            LocationMapAnnotationView(imageName: "map.circle.fill")
             
             VStack {
                 Spacer()

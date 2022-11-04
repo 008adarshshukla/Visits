@@ -8,17 +8,8 @@
 import SwiftUI
 import FirebaseCore
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
-}
-
-@available(iOS 16.0, *)
 @main
+@available(iOS 16.0, *)
 struct VisitsApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -27,7 +18,8 @@ struct VisitsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
+            LocationsView()
+            /*ZStack {
                 if authViewModel.isSignedIn {
                     if UserDefaultsManager.shared.getDataFromUserDeafults(forKey: Constants.userType) == "User" {
                         LocationsView()
@@ -46,10 +38,20 @@ struct VisitsApp: App {
                             }
                         }
                 }
-            }
+            }*/
+            .environmentObject(LocalSearchManager())
             //AdvertiserFormView()
         }
     }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
 }
 
 

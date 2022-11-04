@@ -12,9 +12,11 @@ enum MapDetails {
     static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
 }
 
-final class LocationsViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+class LocationsViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
+    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
+//    @Published var currentLocation: CLLocationCoordinate2D = MapDetails.startingLocation
     
     override init() {
         super.init()
@@ -24,9 +26,6 @@ final class LocationsViewModel: NSObject, ObservableObject, CLLocationManagerDel
         locationManager.requestAlwaysAuthorization()
         locationManager.requestLocation()
     }
-    
-    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
-    
     
     //Function that check the user location permission, its private because only functions inside this class can have access to this function
     private func checkLocationAuthorization() {
@@ -44,6 +43,7 @@ final class LocationsViewModel: NSObject, ObservableObject, CLLocationManagerDel
             region = MKCoordinateRegion(
                 center: location.coordinate,
                 span: MapDetails.defaultSpan)
+            //currentLocation = location.coordinate
             
         @unknown default:
             break

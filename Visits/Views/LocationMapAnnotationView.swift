@@ -9,9 +9,11 @@ import SwiftUI
 
 struct LocationMapAnnotationView: View {
     let accentColor = Color("AccentColor")
+    //folder.badge.person.croplet
+    let imageName: String
     var body: some View {
         VStack(spacing: 0) {
-            Image(systemName: "map.circle.fill")
+            Image(systemName: imageName)//map.circle.fill
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30, height: 30)
@@ -36,6 +38,6 @@ struct LocationMapAnnotationView: View {
 
 struct LocationMapAnnotationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationMapAnnotationView()
+        LocationMapAnnotationView(imageName: "person.circle")
     }
 }

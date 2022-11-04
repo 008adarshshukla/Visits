@@ -24,6 +24,8 @@
 		02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0DB5328A3893200405DE4 /* LocationsView.swift */; };
 		02A0DB5628A38A6600405DE4 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0DB5528A38A6600405DE4 /* LocationsViewModel.swift */; };
 		02AF6D0F28F530D5002F4DE3 /* AdvertiserFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AF6D0E28F530D5002F4DE3 /* AdvertiserFormView.swift */; };
+		02B791982911769700775F29 /* LocalSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B791972911769700775F29 /* LocalSearchManager.swift */; };
+		02B7919A2911A57500775F29 /* LandmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B791992911A57500775F29 /* LandmarkModel.swift */; };
 		02B80FB728AB90AE00049044 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B80FB628AB90AE00049044 /* AuthViewModel.swift */; };
 		02D3F36F289639C30007F0D1 /* VisitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3F36E289639C30007F0D1 /* VisitsApp.swift */; };
 		02D3F371289639C30007F0D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3F370289639C30007F0D1 /* ContentView.swift */; };
@@ -49,6 +51,8 @@
 		02A0DB5328A3893200405DE4 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
 		02A0DB5528A38A6600405DE4 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
 		02AF6D0E28F530D5002F4DE3 /* AdvertiserFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiserFormView.swift; sourceTree = "<group>"; };
+		02B791972911769700775F29 /* LocalSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchManager.swift; sourceTree = "<group>"; };
+		02B791992911A57500775F29 /* LandmarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkModel.swift; sourceTree = "<group>"; };
 		02B80FB628AB90AE00049044 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		02D3F36B289639C30007F0D1 /* Visits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Visits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D3F36E289639C30007F0D1 /* VisitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitsApp.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 				0252265028AE6880008410B7 /* UserDefaultsManager.swift */,
 				0224469428F70FC2001F2D74 /* FirebaseStorageManager.swift */,
 				026772CC28F91ADF0009A31A /* DatabaseManager.swift */,
+				02B791972911769700775F29 /* LocalSearchManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				029697A628B15EAA00EEB2FE /* BusinessModel.swift */,
+				02B791992911A57500775F29 /* LandmarkModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,8 +298,10 @@
 				02A0DB5628A38A6600405DE4 /* LocationsViewModel.swift in Sources */,
 				02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */,
 				02AF6D0F28F530D5002F4DE3 /* AdvertiserFormView.swift in Sources */,
+				02B7919A2911A57500775F29 /* LandmarkModel.swift in Sources */,
 				027F30DB289A405D00172B7C /* LaunchScreenView.swift in Sources */,
 				02918C6228AA590D0045B041 /* SignUpView.swift in Sources */,
+				02B791982911769700775F29 /* LocalSearchManager.swift in Sources */,
 				02F5231528AA101800E895D3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
