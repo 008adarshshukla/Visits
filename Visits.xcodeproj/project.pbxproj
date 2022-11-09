@@ -19,6 +19,7 @@
 		026772CD28F91ADF0009A31A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026772CC28F91ADF0009A31A /* DatabaseManager.swift */; };
 		027F30D9289A3D6D00172B7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027F30D8289A3D6D00172B7C /* LaunchScreen.storyboard */; };
 		027F30DB289A405D00172B7C /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F30DA289A405D00172B7C /* LaunchScreenView.swift */; };
+		028335B9291C26CA00D3AA96 /* CoordinateRegionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028335B8291C26CA00D3AA96 /* CoordinateRegionExtension.swift */; };
 		02918C6228AA590D0045B041 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02918C6128AA590D0045B041 /* SignUpView.swift */; };
 		029697A728B15EAA00EEB2FE /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029697A628B15EAA00EEB2FE /* BusinessModel.swift */; };
 		02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0DB5328A3893200405DE4 /* LocationsView.swift */; };
@@ -46,6 +47,7 @@
 		026772CC28F91ADF0009A31A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		027F30D8289A3D6D00172B7C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		027F30DA289A405D00172B7C /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		028335B8291C26CA00D3AA96 /* CoordinateRegionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateRegionExtension.swift; sourceTree = "<group>"; };
 		02918C6128AA590D0045B041 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		029697A628B15EAA00EEB2FE /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
 		02A0DB5328A3893200405DE4 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		028335B7291C267F00D3AA96 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				028335B8291C26CA00D3AA96 /* CoordinateRegionExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		02AF6D0D28F53095002F4DE3 /* AdvertiserViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +181,7 @@
 				027F30DC289A817A00172B7C /* Views */,
 				027F30DE289A819900172B7C /* ViewModels */,
 				02F5231328AA0FF600E895D3 /* Constants */,
+				028335B7291C267F00D3AA96 /* Extensions */,
 				02D3F372289639C60007F0D1 /* Assets.xcassets */,
 				02D3F374289639C60007F0D1 /* Preview Content */,
 			);
@@ -298,6 +309,7 @@
 				02A0DB5628A38A6600405DE4 /* LocationsViewModel.swift in Sources */,
 				02A0DB5428A3893300405DE4 /* LocationsView.swift in Sources */,
 				02AF6D0F28F530D5002F4DE3 /* AdvertiserFormView.swift in Sources */,
+				028335B9291C26CA00D3AA96 /* CoordinateRegionExtension.swift in Sources */,
 				02B7919A2911A57500775F29 /* LandmarkModel.swift in Sources */,
 				027F30DB289A405D00172B7C /* LaunchScreenView.swift in Sources */,
 				02918C6228AA590D0045B041 /* SignUpView.swift in Sources */,

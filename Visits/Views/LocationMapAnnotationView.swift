@@ -22,7 +22,7 @@ struct LocationMapAnnotationView: View {
                 .foregroundColor(.white)
                 .background(.red)
                 .clipShape(Circle())
-            
+
             Image(systemName: "triangle.fill")
                 .resizable()
                 .scaledToFit()
@@ -32,6 +32,7 @@ struct LocationMapAnnotationView: View {
                 .offset(y: -3)
             //this padding is given so that the exact locattion is not blocked by the marker.
                 .padding(.bottom, 40)
+            
         }
     }
 }

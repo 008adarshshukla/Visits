@@ -15,6 +15,7 @@ class LocalSearchManager: ObservableObject {
     let locationsViewModel = LocationsViewModel()
     var cancellables = Set<AnyCancellable>()
     @Published var landmarks: [Landmark] = []
+    @Published var landmark: Landmark?
     
     init() {
         locationsViewModel.$region.assign(to: \.region, on: self)

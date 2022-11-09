@@ -26,6 +26,7 @@ struct LocationsView: View {
                     
                     MapAnnotation(coordinate: landmark.coordinates) {
                         LocationMapAnnotationView(imageName: "map.circle.fill")
+                            .scaleEffect(localSearchManager.landmark == landmark ? 1.1 : 0.8)
                             .onAppear {
                                 annotationsDidAppear = true
                             }
@@ -50,7 +51,10 @@ struct LocationsView: View {
             .offset(x: showSideBar ? -145 : -300)
             
             if annotationsDidAppear {
-                listViewButton()
+                VStack {
+                    Spacer()
+                    listViewButton()
+                }
             }
             
             locationListView()
@@ -193,6 +197,7 @@ extension LocationsView {
         }
     }
     
+    //MARK: List View Button
     @ViewBuilder
     func listViewButton() -> some View {
         Button {
@@ -201,34 +206,32 @@ extension LocationsView {
                 viewListButtonTapped = true
             }
         } label: {
-            VStack {
-                Spacer()
-                HStack {
-                    Image(systemName: "list.bullet.rectangle.portrait")
-                        .resizable()
-                        .foregroundColor(.black)
-                        .frame(width: 20, height: 20)
-                    Text("View List")
-                        .font(.headline)
-                        .foregroundColor(.black)
-                }
-                .padding()
-                .background {
-                    Capsule()
-                        .foregroundColor(.white.opacity(0.8))
-                }
+            HStack {
+                Image(systemName: "list.bullet.rectangle.portrait")
+                    .resizable()
+                    .foregroundColor(.black)
+                    .frame(width: 20, height: 20)
+                Text("View List")
+                    .font(.headline)
+                    .foregroundColor(.black)
+            }
+            .padding()
+            .background {
+                Capsule()
+                    .foregroundColor(.white.opacity(0.8))
             }
         }
     }
     
+    //MARK: Location List View
     @ViewBuilder
     func locationListView() -> some View {
         VStack {
             HStack {
                 Text(searchedLocation)
-                        .foregroundColor(.black)
-                        .font(.title)
-                        .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                    .font(.title)
+                    .fontWeight(.semibold)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
@@ -236,8 +239,18 @@ extension LocationsView {
             List {
                 Section {
                     ForEach(localSearchManager.landmarks) { landmark in
-                        VStack {
+                        HStack {
                             Text(landmark.name)
+                            Spacer()
+                            Image(systemName: "info.circle.fill")
+                                .foregroundColor(.gray.opacity(0.8))
+                        }
+                        .onTapGesture {
+                            withAnimation(Animation.easeInOut) {
+                                localSearchManager.landmark = landmark
+                                localSearchManager.region = MKCoordinateRegion.regionFromLandmark(landmark)
+                                viewListButtonTapped = false
+                            }
                         }
                     }
                 } header: {
@@ -245,10 +258,12 @@ extension LocationsView {
                         .font(.headline)
                         .fontWeight(.semibold)
                 }
-
+                
             }
             .listStyle(.plain)
         }
         .background(.white)
     }
 }
+
+
