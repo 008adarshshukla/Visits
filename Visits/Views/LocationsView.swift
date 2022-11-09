@@ -16,6 +16,8 @@ struct LocationsView: View {
     @Namespace var animation
     @State var showSideBar: Bool = false
     @EnvironmentObject var localSearchManager: LocalSearchManager
+    @State var annotationsDidAppear = false
+    @State var viewListButtonTapped = false
     
     var body: some View {
         ZStack {
@@ -24,6 +26,9 @@ struct LocationsView: View {
                     
                     MapAnnotation(coordinate: landmark.coordinates) {
                         LocationMapAnnotationView(imageName: "map.circle.fill")
+                            .onAppear {
+                                annotationsDidAppear = true
+                            }
                     }
                 })
                 .ignoresSafeArea()
@@ -43,6 +48,14 @@ struct LocationsView: View {
                 Color.white.ignoresSafeArea()
             })
             .offset(x: showSideBar ? -145 : -300)
+            
+            if annotationsDidAppear {
+                listViewButton()
+            }
+            
+            locationListView()
+                .offset(y: !viewListButtonTapped ? UIScreen.main.bounds.height : 0)
+            
         }
         
     }
@@ -179,5 +192,63 @@ extension LocationsView {
                 .ignoresSafeArea()
         }
     }
-}
+    
+    @ViewBuilder
+    func listViewButton() -> some View {
+        Button {
+            //show the list view
+            withAnimation(Animation.easeInOut) {
+                viewListButtonTapped = true
+            }
+        } label: {
+            VStack {
+                Spacer()
+                HStack {
+                    Image(systemName: "list.bullet.rectangle.portrait")
+                        .resizable()
+                        .foregroundColor(.black)
+                        .frame(width: 20, height: 20)
+                    Text("View List")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                }
+                .padding()
+                .background {
+                    Capsule()
+                        .foregroundColor(.white.opacity(0.8))
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func locationListView() -> some View {
+        VStack {
+            HStack {
+                Text(searchedLocation)
+                        .foregroundColor(.black)
+                        .font(.title)
+                        .fontWeight(.semibold)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(.gray.opacity(0.2))
+            List {
+                Section {
+                    ForEach(localSearchManager.landmarks) { landmark in
+                        VStack {
+                            Text(landmark.name)
+                        }
+                    }
+                } header: {
+                    Text("Nearby \(searchedLocation)")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                }
 
+            }
+            .listStyle(.plain)
+        }
+        .background(.white)
+    }
+}
